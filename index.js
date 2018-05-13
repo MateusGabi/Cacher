@@ -1,1 +1,1 @@
-module.exports = require('./dist/init').Cacher
+module.exports = require('./dist/init').default.Cacher
