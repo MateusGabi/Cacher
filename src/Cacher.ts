@@ -1,32 +1,90 @@
+/**
+ * Cacher
+ * 
+ * @author Mateus Gabi Moreira <mateusgabimoreira@gmail.com>
+ */
+class Cacher<T> {
 
-class Cacher {
+    /**
+     * data that will be stored
+     */
+    data: T|undefined;
 
-    data: Object;
+    /**
+     * time in seconds to update data value
+     */
     interval: number;
-    resolver: Function;
-    expires_in: number;
 
-    constructor(data: Object, interval: number, resolver: Function) {
+    /**
+     * function that update new results
+     */
+    resolver: (previusData?: T, updateCounter?: number) => T;
+
+
+    /* control attributes */
+
+    /**
+     * expiration date
+     */
+    expires_in: Date;
+
+    /**
+     * number of times a cache data was updated
+     */
+    update_counter: number;
+
+    constructor(resolver: (previusData?: T, updateCounter?: number) => T, data?: T|undefined, interval?: number) {
         this.data = data
-        this.interval = interval
+        this.interval = interval || 3600
         this.resolver = resolver
 
-        this.expires_in = new Date().getTime() + interval
+
+        /* control attributes */
+        const now = new Date();
+        now.setSeconds(now.getSeconds() + this.interval)
+
+        this.expires_in = now
+        this.update_counter = 0
+    }
+
+    /**
+     * checks if data is valid
+     * 
+     * @returns {boolean} isValid
+     */
+    dataIsValid(): boolean {
+        const now = new Date()      
+
+        if(!this.data) {
+            return false
+        }
+        
+        if(this.expires_in.getTime() < now.getTime()) {
+            return false
+        }
+
+        return true
     }
 
 
-    getData() {
+    /**
+     * Get data value
+     * 
+     * @returns {T} data
+     */
+    getData(): T {
 
-        let now = new Date().getTime()
+        if (!this.dataIsValid()) {
 
-        if (this.expires_in < now) {
+            let now = new Date()
+            now.setSeconds(now.getSeconds() + this.interval)
 
-            console.log(`retrieving data from resolver because ${this.expires_in} is less than ${now}`);
-            this.expires_in = now + this.interval
-            this.data = this.resolver()
+            this.expires_in = now
+            
+            this.data = this.resolver(this.data, ++this.update_counter)
         }
 
-        return this.data
+        return this.data || <T> {}
     }
 }
 
