@@ -1,0 +1,23 @@
+{
+  "name": "cacher",
+  "version": "1.0.0",
+  "description": "a simple cache system",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateusgabi/cacher.git"
+  },
+  "keywords": [
+    "node",
+    "cache"
+  ],
+  "author": "Mateus Gabi Moreira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mateusgabi/cacher/issues"
+  },
+  "homepage": "https://github.com/mateusgabi/cacher#readme"
+}
