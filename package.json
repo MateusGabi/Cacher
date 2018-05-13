@@ -4,6 +4,7 @@
   "description": "a simple cache system",
   "main": "index.js",
   "scripts": {
+    "tsc:w": "tsc -w --outDir ./dist/ index.ts ",
     "test": "jest"
   },
   "repository": {
@@ -19,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/mateusgabi/cacher/issues"
   },
-  "homepage": "https://github.com/mateusgabi/cacher#readme"
+  "homepage": "https://github.com/mateusgabi/cacher#readme",
+  "dependencies": {
+    "typescript": "^2.8.3"
+  }
 }

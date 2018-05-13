@@ -1,8 +1,12 @@
-"use strict";
 
 class Cacher {
 
-    constructor(data, interval, resolver) {
+    data: Object;
+    interval: number;
+    resolver: Function;
+    expires_in: number;
+
+    constructor(data: Object, interval: number, resolver: Function) {
         this.data = data
         this.interval = interval
         this.resolver = resolver
@@ -27,4 +31,4 @@ class Cacher {
 }
 
 
-module.exports = Cacher
+export default Cacher
