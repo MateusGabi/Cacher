@@ -4,7 +4,7 @@
   "description": "a simple cache system",
   "main": "index.js",
   "scripts": {
-    "tsc:w": "tsc -w --outDir ./dist/ index.ts ",
+    "tsc:w": "tsc -w --outDir ./dist/ init.ts ",
     "test": "jest"
   },
   "repository": {
