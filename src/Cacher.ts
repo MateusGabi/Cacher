@@ -18,7 +18,7 @@ class Cacher<T> {
     /**
      * function that update new results
      */
-    resolver: (previusData?: T, updateCounter?: number) => T;
+    resolver: (previousData?: T, updateCounter?: number) => T;
 
 
     /* control attributes */
@@ -33,7 +33,7 @@ class Cacher<T> {
      */
     update_counter: number;
 
-    constructor(resolver: (previusData?: T, updateCounter?: number) => T, data?: T|undefined, interval?: number) {
+    constructor(resolver: (previousData?: T, updateCounter?: number) => T, data?: T|undefined, interval?: number) {
         this.data = data
         this.interval = interval || 3600
         this.resolver = resolver
